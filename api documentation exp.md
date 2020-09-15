@@ -48,3 +48,36 @@ device: Contains the id & temperature parameters of device
 |&nbsp;&nbsp; minTemp | Low Temperature | number | "minTemp" is in degrees Celsius |
 |&nbsp;&nbsp; windSpeed | forecast Wind Speed | number | "windSpeed" is in kilometres per hour |
 |&nbsp;&nbsp; danger | true if the whether conditions are dangerous; otherwise false | boolean | |
+
+
+ #### Represents a request for a meeting in a calendar.
+
+| Element | Description | Type | Required | Notes |
+|---- | --- | --- | --- | --- |
+| meeting | Top level | meeting data object | Required | |
+| &nbsp; &nbsp; time | When meeting starts.  | string | Required | Format is YYYY-MM-DD HH:MM:SS. Timezone is GMT. |
+| &nbsp; &nbsp; duration | How long meeting lasts | number | Required | In minutes |
+| &nbsp; &nbsp; description | Description of the meeting | string | Required | |
+| &nbsp; &nbsp; location | Location of the meeting | number | Optional | Default is an empty string |
+| &nbsp; &nbsp; reminder | How many minutes before the meeting a reminder event should take place | number | Optional | Default is 10 minutes |
+| &nbsp; &nbsp; invitees | List of email address of people to invite to the meeting | array of string | Optional | The strings should be valid email addresses. Default is an empty array. |
+
+
+#### Represents a menu.
+
+| Element | Description | Type | Notes |
+|---- | --- | --- | --- |
+| Top level | Menu columns | array of menu column objects | |
+| &nbsp; &nbsp; header | Name of the column | string | |
+| &nbsp; &nbsp; items | List of menu items under the column | array of menu items | |
+| &nbsp; &nbsp; id | ID of the menu | string | |
+| &nbsp; &nbsp; label | Label that is displayed in the user interface | string | |
+
+#### Represents a song.
+
+| Element | Description | Type | Notes |
+|---- | --- | --- | --- |
+| song | Top level | song data object | |
+| &nbsp; &nbsp; title | Song title | string | |
+| &nbsp; &nbsp; artist | Song artist | string | |
+| &nbsp; &nbsp; musicians | A list of musicians who play on the song | array of string | |
