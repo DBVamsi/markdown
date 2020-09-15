@@ -1,0 +1,29 @@
+{ "dailyweather":
+[
+{ "monday": 
+{
+  "description":"Sunny",
+  "maxTemp":22,
+  "minTemp":18,
+  "windspeed":12,
+  "danger":"false"
+}
+},
+{ "tuesday": {
+  "description":"cloudy",
+  "maxTemp":18,
+  "minTemp":14,
+  "windspeed":22,
+  "danger":"false"
+}
+},
+{ "wednesday": {
+  "description":"Thunderstorm",
+  "maxTemp":14,
+  "minTemp":10,
+  "windspeed":30,
+  "danger":"true"
+}
+}
+]
+}
