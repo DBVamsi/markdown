@@ -40,7 +40,7 @@ where {album_id} is unique id of the album to be updated. {body} is the update p
 ### Delete an album
 Deletes an existing album.
 
-`DELETE https://phantasticfoto.com/api/v1/album/{album_id}`
+`DELETE https://yourcompany.com/api/v1/album/{album_id}`
 
 where {album_id} is the unique id of the album to be deleted.
 
@@ -48,6 +48,6 @@ where {album_id} is the unique id of the album to be deleted.
 ### Print an album
 Prints out an album.
 
-`POST https://phantasticfoto.com/api/v1/album/{album_id}/print`
+`POST https://yourcompany.com/api/v1/album/{album_id}/print`
 
 where {album_id} is the unique id of the album to be printed.
