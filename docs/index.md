@@ -9,4 +9,9 @@ Click [here](https://github.com/DBVamsi/markdown/blob/master/album%20api%20examp
 Click [here](https://github.com/DBVamsi/markdown/blob/master/api%20documentation%20exp.md) to view my other API example.
 
 
+### Json Example
+
+Click [here](https://github.com/DBVamsi/markdown/blob/master/jsonexample.json) to view JSON formatting examples.
+
+---
 This page was last updated on 24-Sep-2020.
