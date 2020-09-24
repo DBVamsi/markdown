@@ -1,37 +1,12 @@
-## Welcome to GitHub Pages
+# Welcome to my Markdown examples
 
-You can use the [editor on GitHub](https://github.com/DBVamsi/markdown/edit/master/docs/index.md) to maintain and preview the content for your website in Markdown files.
+### Album API Example
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Click [here](https://github.com/DBVamsi/markdown/blob/master/album%20api%20example.md) to view my Album API example.
 
-### Markdown
+### Other example
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Click [here](https://github.com/DBVamsi/markdown/blob/master/api%20documentation%20exp.md) to view my other API example.
 
-```markdown
-Syntax highlighted code block
 
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/DBVamsi/markdown/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+This page was last updated on 24-Sep-2020.
