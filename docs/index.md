@@ -14,4 +14,4 @@ Click [here](https://github.com/DBVamsi/markdown/blob/master/api%20documentation
 Click [here](https://github.com/DBVamsi/markdown/blob/master/jsonexample.json) to view JSON formatting examples.
 
 ---
-This page was last updated on 24-Sep-2020.
+This page was last updated on 21-Apr-2021.
