@@ -1,5 +1,6 @@
-#### whether forecast example
+#### weather forecast example
 
+```JSON
 {
     "dailyweather":[
         {
@@ -31,10 +32,11 @@
         }
     ]
 }
-
+```
 
 
 #### menu items example   
+```JSON
 {
     "menu":[
         {
@@ -73,9 +75,10 @@
         }
     ]
 }
-      
+```
       
 #### represents a song
+```JSON
 {
     "song":{
         "title":"example song",
@@ -86,3 +89,8 @@
         ]
     }
 }
+```
+---
+---
+
+Click [here](https://dbvamsi.github.io/markdown/) to get back to index.
