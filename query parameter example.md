@@ -14,4 +14,10 @@
 
 #### GET https://api.bugsquisher.com/bug?startDate=2020-01-01&endDate=2020-12-31&priority=1&severity=1&status=closed&start=0&total=100
 
+
 The above query will return first 100 closed bugs in the year 2020 with both priority & severity of 1.
+
+---
+---
+Click [here](https://dbvamsi.github.io/markdown/) to get back to index.
+
