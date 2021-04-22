@@ -11,7 +11,7 @@ Click [here](https://github.com/DBVamsi/markdown/blob/master/api%20documentation
 
 ### Json Example
 
-Click [here](https://github.com/DBVamsi/markdown/blob/master/jsonexample.json) to view JSON formatting examples.
+Click [here](https://github.com/DBVamsi/markdown/blob/master/jsonexample.md) to view JSON formatting examples.
 
 ### Query parameter
 
