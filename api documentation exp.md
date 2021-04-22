@@ -81,3 +81,9 @@ device: Contains the id & temperature parameters of device
 | &nbsp; &nbsp; title | Song title | string | |
 | &nbsp; &nbsp; artist | Song artist | string | |
 | &nbsp; &nbsp; musicians | A list of musicians who play on the song | array of string | |
+
+
+---
+---
+
+Click [here](https://dbvamsi.github.io/markdown/) to get back to index.
