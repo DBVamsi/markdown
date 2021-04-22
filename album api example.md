@@ -51,3 +51,8 @@ Prints out an album.
 `POST https://yourcompany.com/api/v1/album/{album_id}/print`
 
 where {album_id} is the unique id of the album to be printed.
+
+---
+---
+
+Click [here](https://dbvamsi.github.io/markdown/) to get back to index.
