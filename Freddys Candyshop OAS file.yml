@@ -1,0 +1,413 @@
+##################################################
+# API Specification #
+##################################################
+openapi: 3.0.1
+
+##################################################
+# General Info #
+##################################################
+info:
+  title: Freddy's Artisinal Halloween Candy Shop
+  version: 0.3.0 # random version number
+  contact:
+    name: CandyShop support # random name
+    email: Support.CandyShop@freddy.codesubmit.io # random email
+    url: http://freddy.codesubmit.io/support # random url
+  description: A collection of Freddy's Online Artisanal Halloween Candy Shop APIs
+  termsOfService: http://example.com/terms # random terms url
+
+##################################################
+# Server Information #
+##################################################
+servers:
+- url: https://freddy.codesubmit.io
+- url: http://freddy.codesubmit.io
+
+##################################################
+# Tags #
+##################################################
+tags:
+- name: Dashboard
+  description: All Dashboard operations
+- name: Login
+  description: Authentication and Authorization
+- name: Orders
+  description: All about Orders
+
+##################################################
+# Paths #
+##################################################
+
+paths:
+
+# Path - Login
+  /login:
+## Method
+   post:
+## Tags
+    tags:
+     - Login
+    summary: Authentication
+    description: "Authenticate using `username` and `password` to receive access and refresh tokens"
+    operationId: postLogin
+## Request Body
+    requestBody:
+     content:
+      application/json:
+       schema:
+        $ref: "#/components/schemas/logininfo"
+     required: true
+## Response Body
+    responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/logintokenresponse'
+        '400':
+          description: >-
+            The browser (or proxy) sent a request that this server could not
+            understand.
+        '401':
+          description: >-
+            Bad Credentials
+
+# Path - Refresh
+  /refresh:
+## Method
+   post:
+## Tags
+    tags:
+     - Login
+    summary: Refresh Token
+    description: "Use this endpoint to refresh your `access_token` by sending a `POST` request with       the header `Authorization: Bearer refresh_token(received in login response)`. "
+    operationId: postrefreshToken
+## Security
+    security:
+     - BearerAuth: []
+## Response Body
+    responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/refreshtokenresponse'
+        "400":
+          description: "The browser (or proxy) sent a request that this server could not understand."
+        "401":
+          description: "Missing Authorization Header
+            
+            \n or
+            
+            \nToken has Expired"
+        "422":
+          description: "Signature verification failed."
+
+
+# Path - Dashboard
+  /dashboard:
+## Method
+    get:
+## Tags
+      tags:
+      - Dashboard
+      summary: Dashboard data
+      description: "Retrieves the entire dashboard data including total units sold, total revenue earned, and details of sales(week and year)."
+      operationId: getDashboard
+## Security
+      security:
+       - BearerAuth: []
+## Response Body
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/dashboard'
+        "400":
+          description: "The browser (or proxy) sent a request that this server could not understand."
+        "401":
+          description: "Missing Authorization Header
+            
+            \n or
+            
+            \nToken has Expired"
+        "422":
+          description: "Signature verification failed."
+
+# Path - Orders
+  /orders:
+## Method
+    get:
+## Tags
+      tags:
+      - Orders
+      summary: Retrieve orders status.
+      description: "Retrieves all orders data including order details, customer details, product details, page number, and total orders."
+      operationId: getorders
+      parameters:
+       - name: "page"
+         in: query
+         description: Page number to retrieve the order details
+         schema:
+          type: number
+          description: Page number to retrieve
+       - name: q
+         in: query
+         description: Query/search term to filter the retrieved data
+         schema:
+           type: string
+## Security
+      security:
+       - BearerAuth: []
+## Response Body
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ordersobject'
+        "400":
+          description: "The browser (or proxy) sent a request that this server could not understand."
+        "401":
+          description: "Missing Authorization Header
+            
+            \n or
+            
+            \nToken has Expired"
+        "422":
+          description: "Signature verification failed."
+ 
+# End of Paths #
+
+##################################################
+# Components #
+##################################################
+components:
+##################################################
+# Requestbodies #
+##################################################
+  requestBodies:
+   logininfo:
+      description: A JSON object containing login information
+      required: true
+      content:
+        application/json: {}
+##################################################
+# Security Schemes #
+##################################################
+  securitySchemes:
+   BearerAuth:
+      description: "This API endpoint uses the `access_token` you received when you logged in.
+       If your `access_token` has expired, refresh it using the `POST refresh access token` method."
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+##################################################
+# Schemas #
+##################################################
+  schemas:
+## Login Token Response 
+    logintokenresponse:
+      title: "Login token Response"
+      properties:
+       access_token:
+        type: string
+       refresh_token:
+        type: string
+## Refresh Token Response
+    refreshtokenresponse:
+      title: "Refresh token response"
+      properties:
+       access_token:
+        type: string
+## Login info
+    logininfo:
+      title: Login info
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+      required:
+        - text
+## Dashboard object
+    dashboard:
+       title: Dashboard
+       type: object
+       properties:
+        bestseller:
+          type: array
+          description: Bestselling products including total revenue and units sold.
+          items:
+            type: object
+            properties:
+              product:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: Product ID
+                  image:
+                    type: string
+                    description: Product image url
+                  name:
+                    type: string
+                    description: Name of the product
+              revenue:
+                type: integer
+                description: Total revenue earned by the product
+              units:
+                type: integer
+                description: Total units of the product sold
+        sales_over_time_week:
+          type: object
+          properties:
+            "1":
+              $ref: '#/components/schemas/weekobject'
+            "2":
+              $ref: '#/components/schemas/weekobject'
+            "3":
+              $ref: '#/components/schemas/weekobject'
+            "4":
+              $ref: '#/components/schemas/weekobject'
+            "5":
+              $ref: '#/components/schemas/weekobject'
+            "6":
+              $ref: '#/components/schemas/weekobject'
+            "7":
+              $ref: '#/components/schemas/weekobject'
+        sales_over_time_year:
+          type: object
+          properties:
+            "1":
+              $ref: '#/components/schemas/yearobject'
+            "2":
+              $ref: '#/components/schemas/yearobject'
+            "3":
+              $ref: '#/components/schemas/yearobject'
+            "4":
+              $ref: '#/components/schemas/yearobject'
+            "5":
+              $ref: '#/components/schemas/yearobject'
+            "6":
+              $ref: '#/components/schemas/yearobject'
+            "7":
+              $ref: '#/components/schemas/yearobject'
+            "8":
+              $ref: '#/components/schemas/yearobject'
+            "9":
+              $ref: '#/components/schemas/yearobject'
+            "10":
+              $ref: '#/components/schemas/yearobject'
+            "11":
+              $ref: '#/components/schemas/yearobject'
+            "12":
+              $ref: '#/components/schemas/yearobject'
+## Week Object
+    weekobject:
+      title: Week object
+      type: object
+      properties:
+        orders:
+          type: integer
+          description: Total orders for a day
+        total:
+          type: integer
+          description: Total revenue for a day
+## Year Object 
+    yearobject:
+      title: Year object
+      type: object
+      properties:
+        orders:
+          type: integer
+          description: Total orders for a month
+        total:
+          type: integer
+          description: Total revenue for a month
+## Orders object
+    ordersobject:
+     title: Orders object
+     type: object
+     properties:
+      orders:
+       description: All the order details      
+       type: array
+       items:
+        type: object
+        properties:
+         created_at:
+          type: string
+          description: Date & Time of order creation
+         currency:
+          type: string
+          description: Symbol of Currency used for the order
+         customer:
+          type: object
+          description: Customer details
+          properties:
+           address:
+            type: object
+            description: customer address details
+            properties:
+             city:
+              type: string
+             street:
+              type: string
+             zipcode:
+              type: string
+           avatar:
+            type: string
+            description: Customer's display picture url
+           email: 
+            type: string
+            description: Customer's email ID
+           id: 
+            type: string 
+            description: 	Customer ID
+           name: 
+            type: string 
+            description: Customer's first name
+           surname: 
+            type: string 
+            description: 	Customer's last name
+         id:
+          type: string
+          description: 		Order ID
+         product:
+          type: object
+          description: 	Product details object
+          properties:
+             id:
+              type: string
+              description: 	Product ID
+             image:
+              type: string
+              description: 	Product image url
+             name:
+              type: string
+              description: 	Name of the product
+             quantity: 
+              type: integer 
+              description: Total quantity of the products in the order           
+         status:
+          type: string
+          description: Status of the order
+         total:
+          type: integer
+      page:
+       type: integer
+       description: number of the orders page
+      total:
+       type: integer
+       description: total number of orders
+    
+
+ 
